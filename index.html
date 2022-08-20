@@ -4,9 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock-Paper-Scissor</title>
 </head>
 <body>
-    
+    <script>
+        //global variables
+        const min = 1;
+        const max = 4;
+        let player = 0;
+
+
+        //get player choice and convert player choice to a number
+        let playerSelection = prompt("enter your choice");
+
+        playerSelection= playerSelection.toLowerCase()
+
+        //1 = rock , 2 = paper, 3= scissor
+        if (playerSelection == "rock"){
+            player = 1; 
+        }
+        else if (playerSelection == "paper"){
+            player = 2;
+        }
+        else if(playerSelection == "scissor"){
+            player = 3;
+        }
+
+
+        console.log(playRound(player) + ' ---here running run playround');
+
+        //generate random number for computer
+        function getRandomNum(min,max){
+            let value = Math.floor(Math.random() * (max-min)) + min; 
+                //console.log(value + " this at random num gen");
+            return value;
+        }
+
+
+        function getComputerChoice(){
+            let computer = getRandomNum(min,max);
+            //console.log(computer + " this is comp choice");
+            //1 = rock , 2 = paper, 3= scissor
+            return computer;
+
+        }
+
+        function playRound(){
+            
+            result = "";
+
+            let compChoice = getComputerChoice();
+            //console.log(player + " this is player choice");
+
+            switch(true){
+                case (player == 1 && compChoice == 3) || (player == 3 && compChoice == 1): 
+                    //console.log("rock beats scissor");
+                    result = "rock beats scissor";
+                    break;
+
+                case(player == 1 && compChoice == 2)||(player == 2 && compChoice == 1):
+                    //console.log("paper beats rock");
+                    result = "paper beats rock";
+                    break;
+
+                case (player == 3 && compChoice == 2) || (player ==2 && compChoice == 3):
+                    //console.log("scissor beats paper");
+                    result = "scissor beats paper";
+                    break; 
+
+                default:
+                    result = "its a tie!"
+                    //console.log("looks like its a tie");
+            }
+            return result
+        }
+
+
+    </script>
+        
 </body>
 </html>
