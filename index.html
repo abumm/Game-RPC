@@ -13,25 +13,8 @@
         const max = 4;
         let player = 0;
 
-
-        //get player choice and convert player choice to a number
-        let playerSelection = prompt("enter your choice");
-
-        playerSelection= playerSelection.toLowerCase()
-
-        //1 = rock , 2 = paper, 3= scissor
-        if (playerSelection == "rock"){
-            player = 1; 
-        }
-        else if (playerSelection == "paper"){
-            player = 2;
-        }
-        else if(playerSelection == "scissor"){
-            player = 3;
-        }
-
-
-        console.log(playRound(player) + ' ---here running run playround');
+    //    console.log(playRound(player) + ' ---here running run playround');
+        game();
 
         //generate random number for computer
         function getRandomNum(min,max){
@@ -57,26 +40,79 @@
             //console.log(player + " this is player choice");
 
             switch(true){
-                case (player == 1 && compChoice == 3) || (player == 3 && compChoice == 1): 
+                case (player == 1 && compChoice == 3):
                     //console.log("rock beats scissor");
-                    result = "rock beats scissor";
+                    result = "player wins, rock beats scissor";
+                    break;
+                     
+                case(player == 1 && compChoice ==2 ):
+                    result = "computer wins, paper beats rock";
                     break;
 
-                case(player == 1 && compChoice == 2)||(player == 2 && compChoice == 1):
+                case(player == 2 && compChoice == 1):
                     //console.log("paper beats rock");
-                    result = "paper beats rock";
+                    result = "player wins, paper beats rock";
                     break;
 
-                case (player == 3 && compChoice == 2) || (player ==2 && compChoice == 3):
+                case (player == 2 && compChoice == 3):
+                    result = "computer wins, scissors beat paper"
+                    break;
+
+                case (player ==3 && compChoice == 2):
+                    result = "player wins, scissor beats paper";
+                    break; 
+
+                case (player == 3 && compChoice == 1):
                     //console.log("scissor beats paper");
-                    result = "scissor beats paper";
+                    result = "computer wins, rock beats scissor";
                     break; 
 
                 default:
                     result = "its a tie!"
-                    //console.log("looks like its a tie");
+                 
             }
             return result
+        }
+
+        function game(){
+
+            let playerScore = 0; 
+            let computerScore = 0; 
+            let tieScore = 0; 
+
+
+            for (let i =0; i < 5; i ++){
+                let playerSelection = prompt("enter your choice");
+
+                playerSelection= playerSelection.toLowerCase()
+
+                //1 = rock , 2 = paper, 3= scissor
+                if (playerSelection == "rock"){
+                    player = 1; 
+                }
+                else if (playerSelection == "paper"){
+                    player = 2;
+                }
+                else if(playerSelection == "scissor"){
+                    player = 3;
+                }
+
+                let sts = playRound(player);
+                console.log(sts + "---ici" );
+
+                if(sts[0] == 'p'){
+                    playerScore += 1;
+                }
+                else if (sts[0] == 'c') {
+                    computerScore +=1;
+                }
+                else{
+                    tieScore += 1;
+                    console.log(tieScore);
+                }
+
+                console.log(playerScore, computerScore, tieScore);
+            } 
         }
 
 
