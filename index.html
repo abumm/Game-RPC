@@ -5,118 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissor</title>
+    <script src = "./scripts.js" defer></script>
+    <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    <script>
-        //global variables
-        const min = 1;
-        const max = 4;
-        let player = 0;
+    
+   
 
-    //    console.log(playRound(player) + ' ---here running run playround');
-        game();
+    <div class="header">
+        <div class="title">
+            <p>Rock Paper Scissor</p>
+        </div>
 
-        //generate random number for computer
-        function getRandomNum(min,max){
-            let value = Math.floor(Math.random() * (max-min)) + min; 
-                //console.log(value + " this at random num gen");
-            return value;
-        }
+    </div>
 
-
-        function getComputerChoice(){
-            let computer = getRandomNum(min,max);
-            //console.log(computer + " this is comp choice");
-            //1 = rock , 2 = paper, 3= scissor
-            return computer;
-
-        }
-
-        function playRound(){
-            
-            result = "";
-
-            let compChoice = getComputerChoice();
-            //console.log(player + " this is player choice");
-
-            switch(true){
-                case (player == 1 && compChoice == 3):
-                    //console.log("rock beats scissor");
-                    result = "player wins, rock beats scissor";
-                    break;
-                     
-                case(player == 1 && compChoice ==2 ):
-                    result = "computer wins, paper beats rock";
-                    break;
-
-                case(player == 2 && compChoice == 1):
-                    //console.log("paper beats rock");
-                    result = "player wins, paper beats rock";
-                    break;
-
-                case (player == 2 && compChoice == 3):
-                    result = "computer wins, scissors beat paper"
-                    break;
-
-                case (player ==3 && compChoice == 2):
-                    result = "player wins, scissor beats paper";
-                    break; 
-
-                case (player == 3 && compChoice == 1):
-                    //console.log("scissor beats paper");
-                    result = "computer wins, rock beats scissor";
-                    break; 
-
-                default:
-                    result = "its a tie!"
-                 
-            }
-            return result
-        }
-
-        function game(){
-
-            let playerScore = 0; 
-            let computerScore = 0; 
-            let tieScore = 0; 
-
-
-            for (let i =0; i < 5; i ++){
-                let playerSelection = prompt("enter your choice");
-
-                playerSelection= playerSelection.toLowerCase()
-
-                //1 = rock , 2 = paper, 3= scissor
-                if (playerSelection == "rock"){
-                    player = 1; 
-                }
-                else if (playerSelection == "paper"){
-                    player = 2;
-                }
-                else if(playerSelection == "scissor"){
-                    player = 3;
-                }
-
-                let sts = playRound(player);
-                console.log(sts + "---ici" );
-
-                if(sts[0] == 'p'){
-                    playerScore += 1;
-                }
-                else if (sts[0] == 'c') {
-                    computerScore +=1;
-                }
-                else{
-                    tieScore += 1;
-                    console.log(tieScore);
-                }
-
-                console.log(playerScore, computerScore, tieScore);
-            } 
-        }
-
-
-    </script>
+    <div class="container" >
+        <div class="score"></div>
+    </div>
         
 </body>
 </html>
